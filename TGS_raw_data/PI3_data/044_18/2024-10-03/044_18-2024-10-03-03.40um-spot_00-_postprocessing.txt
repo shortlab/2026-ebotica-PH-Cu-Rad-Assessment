@@ -1,0 +1,1 @@
+run_name grating_value[um] SAW_freq[Hz] SAW_freq_error[Hz] SAW_speed[m/s] Thermal_diffusivity[m^2s^-1] Thermal_diffusivity_error[m^2s^-1] Acoustic_damping[s] Acoustic_damping_error[s] A[Wm^-2] A_err[Wm^-2] Displacement_reflectance_ratio[s^0.5] Displacement_reflectance_ratio_err[s^0.5] B[Wm^-2] B_err[Wm^-2] Acoustic_phase Acoustic_phase_err C[Wm^-2] C_err[Wm^-2] Time[hh:mm:ss]

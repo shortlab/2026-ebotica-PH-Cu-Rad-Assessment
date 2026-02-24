@@ -1,0 +1,50 @@
+# General setup
+SYSTEM = Structure relaxation fcc CuCrTa
+ISTART = 0  
+ICHARG = 2
+INIWAV = 1
+ISPIN  = 1
+ENCUT  = 550      # x1.5 ENCUT set according to POTCAR (max value of ENMAX)
+#KSPACING =0.05
+#KGAMMA = .TRUE.
+
+
+#Electronic Relaxation (SCF)
+NELM   = 50       # Max Number of Elec Self Cons Steps  
+NELMIN = 2        # Min Number of ESC steps
+#NELMDL = 7        # Number of non-SC at the beginning, if negative just apply to first ionic step, if positive for all(can help to improve convergence speed)  
+EDIFF  = 1.0E-06  # Stopping criteria for ESC
+LREAL  = Auto     # Real space projection
+IALGO  = 48       # Electronic algorithm minimization
+ADDGRID = .TRUE.  # Improve the grid accuracy
+
+
+#Ionic Relaxation 
+EDIFFG = -0.001 # Stopping criteria for ionic self cons steps
+ALGO   = FAST
+NSW    = 200      # Max Number of ISC steps: 0- Single Point
+IBRION = 3        # Ionic Relaxation Method
+ISIF   = 2        # Stress and Relaxation: 2-Ion 3-cell+ion
+POTIM  = 0.3      # Check IBRON info to optimize this parameter
+ADDGRID = .TRUE.  # Improve the grid accuracy
+SIGMA  = 0.05     # Insulators/semiconductors=0.1  metals=0.05 
+ISMEAR = 1        # 1 is a good value for relaxation in metals
+
+
+
+# Calculation Details
+LWAVE  = .TRUE. # Do we want to write the wavefunctions
+LCHARG = .TRUE.
+LVTOT  = .FALSE.
+PREC   = ACCURATE 
+GGA    = PE #(PE=PBE, PS=PBE for solids)
+#Probar LGA y PBE
+
+#Parallelization
+LPLANE = .FALSE.
+#NBANDS = 
+NCORE= 144
+NPAR = 6
+KPAR = 4
+LSCALU = .FALSE. #requires scaLAPACK
+#NSIM   = 6 #bands that can be optimized simultaneously, equal to NPAR

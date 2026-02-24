@@ -1,0 +1,60 @@
+
+# General setup
+SYSTEM = CI-NEB
+ISTART = 0        # WAVECAR is needed  
+ICHARG = 2        # CHGCAR is needed
+ISPIN  = 1
+ENCUT  = 550      # x1.5 ENCUT set according to POTCAR (max value of ENMAX)
+#KSPACING =0.05
+#KGAMMA = .TRUE.
+
+
+#Electronic Relaxation (SCF)
+NELM   = 100       # Max Number of Elec Self Cons Steps  
+NELMIN = 5        # Min Number of ESC steps
+#NELMDL = 7        # Number of non-SC at the beginning, if negative just apply to first ionic step, if positive for all(can help to improve convergence speed)  
+EDIFF  = 1.0E-07  # Stopping criteria for ESC
+LREAL  = Auto     # Real space projection
+#IALGO  = 48       # Electronic algorithm minimization
+ADDGRID = .TRUE.  # Improve the grid accuracy
+ISYM = 0          # Switch on symmetry
+
+#Ionic Relaxation 
+EDIFFG = -0.01 # Stopping criteria for ionic self cons steps
+ALGO   = NORMAL
+NSW    = 200       # Max Number of ISC steps: 0- Single Point
+IBRION = 3        # Ionic Relaxation Method
+ISIF   = 2        # Stress and Relaxation: 2-Ion 3-cell+ion
+POTIM  = 0        # Check IBRON info to optimize this parameter
+ADDGRID = .TRUE.  # Improve the grid accuracy
+SIGMA  = 0.05     # Insulators/semiconductors=0.1  metals=0.05 
+ISMEAR = 1        # 1 is a good value for relaxation in metals  
+
+
+# Calculation Details
+LWAVE  = .FALSE.    # Do we want to write the wavefunctions
+LCHARG = .FALSE.
+LVTOT  = .FALSE.
+PREC   = ACCURATE 
+GGA    = PE        #(PE=PBE, PS=PBE for solids)
+
+#CI-NEB parameters
+NWRITE = 0
+IMAGES = 3
+SPRING = -5       # The spring constant, in eV/Ang^2 between the images; negative value turns on nudging
+ICHAIN = 0        # Indicates which method to run. NEB (ICHAIN=0) is the default
+LCLIMB = .TRUE.   # Flag to turn on the climbing image algorithm
+#LNEBCELL = .TRUE. # Flag to turn on SS-NEB. Used with ISIF=3 and IOPT=3
+IOPT = 1         # Use Vasp optimizers
+INVCURV = 0.001
+# Must set IOPT = 3 or 7 when using LNEBCELL=.TRUE. IOP=3 --> QM (Quick-Min) force based optimizers is used and good for high force far from minmum
+
+
+#Parallelization
+LPLANE = .FALSE.
+#NBANDS = 318 
+NCORE= 40
+#NPAR = 6
+KPAR = 4
+LSCALU = .FALSE. #requires scaLAPACK
+#NSIM   = 6 #bands that can be optimized simultaneously, equal to NPAR
